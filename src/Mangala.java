@@ -14,7 +14,7 @@ class Mangala {
     	mover = 1;
     }
     
-    public void atMove(int hole_num) {
+    public void atMove(int hole_num) throws EmptyHoleException{
     	on_hand = gameplan[mover][hole_num];
     	if(on_hand != 0) {
     	gameplan[mover][hole_num] = 0;
@@ -73,11 +73,11 @@ class Mangala {
     	}
     	vestedStones(i);
    		determineWhoMovesNext(i,counter);
-  }
+  	}
     	else
-    		System.out.println("Hole has 0 stones. Select again.");
+    		throw new EmptyHoleException(hole_num);
     	printEndOfMove();
- }
+}
     public void vestedStones(int last_hole) {
    /*In this part we are checking the rule where the player takes stones if traversing process end in rival's hole 
     and has even # of stones.*/
